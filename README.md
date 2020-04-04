@@ -1,4 +1,4 @@
-# good_wrap
+# Goodreads GraphQL Wrapper
 
 A GraphQL wrapper for the Goodreads REST API.
 
@@ -8,4 +8,4 @@ Feel free to contribute by reporting issues or feature requests.
 
 ## Credit
 
-Original idea from Mac McCarthy, [check his work on Github](https://github.com/mcshakes).
+Inspired and originally forked from Mac McCarthy `good_wrap` repository, [check his work on Github](https://github.com/mcshakes).
