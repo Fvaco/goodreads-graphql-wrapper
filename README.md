@@ -8,4 +8,4 @@ Feel free to contribute by reporting issues or feature requests.
 
 ## Credit
 
-Original idea from Mac McCarthy, [check his work in Github](https://github.com/mcshakes).
+Original idea from Mac McCarthy, [check his work on Github](https://github.com/mcshakes).
