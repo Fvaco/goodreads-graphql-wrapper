@@ -1,10 +1,11 @@
 # good_wrap
-A GraphQL wrapper for the Goodreads API
 
-Right now, it only features some read only queries to be used for looking up books and authors. Over time, I will add more queries and mutations as needed.
+A GraphQL wrapper for the Goodreads REST API.
 
-Feel free to use alongside your Goodreads REST queries, and let me know any suggestions.
+For now it's just in an early development stage. My plan is to cover all features in the orginal API.
 
-## Wiki below
+Feel free to contribute by reporting issues or feature requests.
 
-[Wiki](https://github.com/mcshakes/good_wrap/wiki)
+## Credit
+
+Original idea from Mac McCarthy, [check his work in Github](https://github.com/mcshakes).
