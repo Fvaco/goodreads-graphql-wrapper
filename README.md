@@ -1,4 +1,4 @@
-![cover](https://repository-images.githubusercontent.com/253045772/4d3f2500-7759-11ea-8088-963daa3fcb54)
+![cover](https://repository-images.githubusercontent.com/253045772/551eb980-7799-11ea-9a07-1ff582443ed2)
 # Goodreads API GraphQL Wrapper
 
 A GraphQL wrapper for the Goodreads REST API.
