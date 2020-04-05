@@ -9,5 +9,5 @@ export type Work = {
     originalPublicationMonth: number;
     originalPublicationDay: number;
     averageRating: number;
-    bestBook: Book;
+    bestBook: Partial<Book>;
 };

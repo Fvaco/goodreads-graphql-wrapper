@@ -17,6 +17,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@types/dotenv": "^8.2.0",
         "@types/lodash": "^4.14.149",
         "@types/xml2json": "^0.11.0",
         "apollo-datasource-rest": "^0.6.6",

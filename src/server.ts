@@ -1,17 +1,11 @@
 require('dotenv').config();
-import { ApolloServer } from 'apollo-server';
-import { typeDefs } from './schema';
-import { resolvers } from './resolvers';
+import { ApolloServer, gql } from 'apollo-server';
 
-import { GoodReadsAPI } from './data_sources/goodreads';
+import { dataSources, getSchema } from './resources';
 
-const goodreadsAPI = new GoodReadsAPI();
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    dataSources: () => ({
-        goodreadsAPI,
-    }),
+    schema: getSchema(),
+    dataSources,
 });
 
 server.listen().then(({ url }) => {
