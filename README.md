@@ -1,4 +1,4 @@
-# Goodreads GraphQL Wrapper
+# Goodreads API GraphQL Wrapper
 
 A GraphQL wrapper for the Goodreads REST API.
 
