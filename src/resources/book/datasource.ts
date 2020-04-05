@@ -12,29 +12,12 @@ class DataSource extends GoodreadsDataSource {
 
         const resp = await xmlParser.toJson(xmlResp);
         const newJSON = JSON.parse(resp);
-
         const theBook = newJSON.GoodreadsResponse.book;
-        const similarWorks = newJSON.GoodreadsResponse.book.similar_books.book;
-
-        const finalArr = similarWorks.map((book: any) => {
-            const final: Record<string, any> = {};
-
-            for (const key in book) {
-                if (Object.keys(book[key]).length) {
-                    final[key] = 'no data available';
-                } else {
-                    final[key] = book[key];
-                }
-            }
-            return final;
-        });
+        const similarBooks = newJSON.GoodreadsResponse.book.similar_books?.book;
 
         return {
-            book: theBook,
-
-            similarBooks: finalArr.map((book: any) => {
-                return book;
-            }),
+            ...theBook,
+            similarBooks,
         };
     }
 }

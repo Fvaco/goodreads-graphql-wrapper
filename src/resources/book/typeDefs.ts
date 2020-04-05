@@ -2,7 +2,6 @@ import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
     extend type Query {
-        bookData(id: ID): Book!
         getBookByID(id: ID): Book!
     }
     type Book {
@@ -16,8 +15,8 @@ export const typeDefs = gql`
         average_rating: String
         ratings_count: String
         text_reviews_count: String
-        is_ebook: Boolean
+        is_ebook: String
         language_code: String
-        similar_books: [Book]
+        similarBooks: [Book]
     }
 `;

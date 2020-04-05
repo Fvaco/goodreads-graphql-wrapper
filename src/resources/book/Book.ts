@@ -6,6 +6,7 @@ export type Book = {
     id: number;
     imageUrl: string;
     isbn: string;
+    isbn13: string;
     isEbook: boolean;
     languageCode: string;
     numPages: string;
