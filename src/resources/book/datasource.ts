@@ -14,7 +14,6 @@ class DataSource extends GoodreadsDataSource {
         const newJSON = JSON.parse(resp);
         const theBook = newJSON.GoodreadsResponse.book;
         const similarBooks = newJSON.GoodreadsResponse.book.similar_books?.book;
-
         return {
             ...theBook,
             similarBooks,

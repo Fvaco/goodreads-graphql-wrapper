@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
     extend type Query {
-        getBookByID(id: ID): Book!
+        getBookById(id: ID): Book!
     }
     type Book {
         id: ID!
