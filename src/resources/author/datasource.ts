@@ -1,44 +1,38 @@
 import { GoodreadsDataSource } from '../../data-sources/goodreads';
 import xmlParser from 'xml2json';
-import _ from 'lodash';
+import { camelCase } from 'lodash';
 
 class DataSource extends GoodreadsDataSource {
     constructor() {
         super();
     }
 
-    async getAuthorDataById(inputObject: Record<string, any>) {
-        const xmlResp = await this.get(`author/show/${inputObject.authorId}?format=xml`);
+    async getAuthorInfoById(inputObject: Record<string, any>) {
+        const xmlAuthorInfo = await this.get(`author/show/${inputObject.authorId}?format=xml`);
 
-        const resp = await xmlParser.toJson(xmlResp);
-        const newJSON = JSON.parse(resp);
-
-        const theAuthor = newJSON.GoodreadsResponse.author;
-        const about = newJSON.GoodreadsResponse.author.about;
-        const initBookArr = newJSON.GoodreadsResponse.author.books.book;
-        const finalArr = initBookArr.map((book: any) => {
-            return _.mapValues(book, (val) => (val.nil ? null : val));
-        });
-        const returnObject = {
-            author: theAuthor,
-            about: about,
-            influences: newJSON.GoodreadsResponse.author.influences,
-            hometown: newJSON.GoodreadsResponse.author.hometown,
-            worksCount: newJSON.GoodreadsResponse.author.works_count,
-            books: finalArr.map((book: any) => {
-                return {
-                    id: book.id.$t,
-                    isbn: book.isbn,
-                    title: book.title,
-                    numPages: book.num_pages,
-                    publisher: book.publisher,
-                    published: book.published,
-                    description: book.description,
-                };
-            }),
+        const handleObjectField = (objectValue: Record<string, any>) => {
+            if (!!objectValue) {
+                const { type, $t } = objectValue;
+                if (!!$t) {
+                    if (!!type && type === 'integer') return parseInt($t);
+                    return $t;
+                }
+            }
+            return null;
         };
+        const handleBooksField = ({ book }: Record<string, any>) => book;
 
-        return returnObject;
+        const rawAuthorInfoJSON = await xmlParser.toJson(xmlAuthorInfo);
+        const parsedRawAuthorInfoJSON = JSON.parse(rawAuthorInfoJSON);
+        const rawAuthorInfo = parsedRawAuthorInfoJSON.GoodreadsResponse.author;
+        return Object.entries(rawAuthorInfo).reduce((result: Record<string, any>, [key, value]: [string, any]) => {
+            const isBooksField = key === 'books';
+            const booksValue = isBooksField && handleBooksField(value);
+            if (isBooksField) return { ...result, books: booksValue };
+
+            const currentValue = typeof value === 'object' && !!value ? handleObjectField(value) : value;
+            return { ...result, [camelCase(key)]: currentValue };
+        }, {});
     }
 }
 
