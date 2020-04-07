@@ -7,7 +7,7 @@ class DataSource extends GoodreadsDataSource {
         super();
     }
 
-    async getAuthorData(inputObject: Record<string, any>) {
+    async getAuthorDataById(inputObject: Record<string, any>) {
         const xmlResp = await this.get(`author/show/${inputObject.authorId}?format=xml`);
 
         const resp = await xmlParser.toJson(xmlResp);
@@ -16,12 +16,10 @@ class DataSource extends GoodreadsDataSource {
         const theAuthor = newJSON.GoodreadsResponse.author;
         const about = newJSON.GoodreadsResponse.author.about;
         const initBookArr = newJSON.GoodreadsResponse.author.books.book;
-
         const finalArr = initBookArr.map((book: any) => {
             return _.mapValues(book, (val) => (val.nil ? null : val));
         });
-
-        return {
+        const returnObject = {
             author: theAuthor,
             about: about,
             influences: newJSON.GoodreadsResponse.author.influences,
@@ -39,6 +37,8 @@ class DataSource extends GoodreadsDataSource {
                 };
             }),
         };
+
+        return returnObject;
     }
 }
 
