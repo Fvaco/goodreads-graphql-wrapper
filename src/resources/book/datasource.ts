@@ -1,4 +1,4 @@
-import { GoodreadsDataSource } from '../../data-sources/goodreads';
+import { GoodreadsDataSource } from '../../lib/data-sources/goodreads';
 import xmlParser from 'xml2json';
 import _ from 'lodash';
 

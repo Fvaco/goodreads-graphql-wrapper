@@ -1,4 +1,4 @@
-import { GoodreadsDataSource } from '../../data-sources/goodreads';
+import { GoodreadsDataSource } from '../../lib/data-sources/goodreads';
 import xmlParser from 'xml2json';
 import { camelCase } from 'lodash';
 
@@ -12,7 +12,8 @@ class DataSource extends GoodreadsDataSource {
 
         const handleObjectField = (objectValue: Record<string, any>) => {
             if (!!objectValue) {
-                const { type, $t } = objectValue;
+                const { type, $t, nil } = objectValue;
+                if (!!nil) return null;
                 if (!!$t) {
                     if (!!type && type === 'integer') return parseInt($t);
                     return $t;
@@ -27,8 +28,7 @@ class DataSource extends GoodreadsDataSource {
         const rawAuthorInfo = parsedRawAuthorInfoJSON.GoodreadsResponse.author;
         return Object.entries(rawAuthorInfo).reduce((result: Record<string, any>, [key, value]: [string, any]) => {
             const isBooksField = key === 'books';
-            const booksValue = isBooksField && handleBooksField(value);
-            if (isBooksField) return { ...result, books: booksValue };
+            if (isBooksField) return { ...result, books: handleBooksField(value) };
 
             const currentValue = typeof value === 'object' && !!value ? handleObjectField(value) : value;
             return { ...result, [camelCase(key)]: currentValue };
