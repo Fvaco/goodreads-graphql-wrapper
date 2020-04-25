@@ -1,9 +1,8 @@
 {
     "compilerOptions": {
-        "target": "ES5",
+        "target": "es2018",
         "module": "commonjs",
-        //"lib": ["dom", "es6"],
-        //"types": [],
+        "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "./dist",
         "rootDir": "./src",
