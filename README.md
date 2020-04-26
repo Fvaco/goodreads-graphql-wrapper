@@ -12,10 +12,10 @@ Feel free to contribute, report issues, request new features. Read the [CONTRIBU
 ```
 git clone https://github.com/Fvaco/goodreads-graphql-wrapper.git
 ```
-1. Install dependencies using `yarn` or `npm install`
-2. Create the `dist` directory with `yarn build` or `npm run build`
+2. Install dependencies using `yarn` or `npm install`
+3. Create the `dist` directory with `yarn build` or `npm run build`
     - You can use `yarn dev` or `npm run dev` for _watch_ mode
-3. Run it in local server using
+4. Run it in local server using
 ```
 yarn nodemon dist/server.js
 ```
@@ -24,7 +24,7 @@ or
 ```
 npm run nodemon dist/server.js
 ```
-4. Open you'll be able to see the GraphQL Playgrond on
+5. Open you'll be able to see the GraphQL Playgrond on
 ```
 http://localhost:4000
 ```
