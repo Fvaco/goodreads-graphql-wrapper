@@ -1,16 +1,17 @@
 {
     "compilerOptions": {
-        "target": "es2018",
+        "target": "ES6",
         "module": "commonjs",
         "moduleResolution": "node",
-        "sourceMap": true,
+        //"sourceMap": true,
         "outDir": "./dist",
         "rootDir": "./src",
-
+        "baseUrl": "./src",
+        "paths": {
+            "~/*": ["./*"]
+        },
         "removeComments": true,
-
         "strict": true,
-
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true
     },
