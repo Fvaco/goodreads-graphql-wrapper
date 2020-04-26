@@ -1,4 +1,6 @@
 import { gql, makeExecutableSchema } from 'apollo-server';
+import { RESTDataSource } from 'apollo-datasource-rest';
+
 import * as Book from './book';
 import * as Author from './author';
 
@@ -17,4 +19,7 @@ export const getSchema = () =>
         },
     });
 
-export const dataSources = () => ({ bookDataSource: Book.dataSource, authorDataSource: Author.dataSource });
+export const getDataSources = (): (() => { [key: string]: RESTDataSource }) => () => ({
+    bookDataSource: Book.dataSource,
+    authorDataSource: Author.dataSource,
+});

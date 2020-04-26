@@ -1,4 +1,4 @@
 export const Query = () => ({
-    getBookById: (_: any, { id }: Record<string, any>, { dataSources }: Record<string, any>) =>
+    getBookById: (_: any, { id }: { id: string }, { dataSources }: { [key: string]: any }) =>
         dataSources.bookDataSource.getInfoForBook({ bookId: id }),
 });

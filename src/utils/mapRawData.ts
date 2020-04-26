@@ -1,5 +1,5 @@
 import { camelCase } from 'lodash';
-import { handleObjectField } from '~/utils/handleObjectField';
+import { handleObjectField } from './handleObjectField';
 
 export type RawInfo = { [key: string]: string } | {};
 export type MapperFn = <T>(value: any) => T | T[] | RawInfo;

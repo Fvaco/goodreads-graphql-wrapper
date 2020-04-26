@@ -4,7 +4,7 @@ import { mapAuthorInfoData } from './utils/mapAuthorInfoData';
 import { AuthorInfo } from './Author';
 import { RawInfo } from '~/utils/mapRawData';
 
-class DataSource extends GoodreadsDataSource {
+export class DataSource extends GoodreadsDataSource {
     constructor() {
         super();
     }

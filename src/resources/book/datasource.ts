@@ -2,7 +2,7 @@ import { GoodreadsDataSource } from '../../lib/data-sources/goodreads';
 import xmlParser from 'xml2json';
 import _ from 'lodash';
 
-class DataSource extends GoodreadsDataSource {
+export class DataSource extends GoodreadsDataSource {
     constructor() {
         super();
     }
