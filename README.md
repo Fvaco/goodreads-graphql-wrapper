@@ -7,15 +7,16 @@ For now it's just in an early development stage. My plan is to cover all feature
 
 Feel free to contribute, report issues, request new features. Read the [CONTRIBUTING.md](https://github.com/Fvaco/goodreads-graphql-wrapper/blob/develop/CONTRIBUTING.md) to know more.
 
-## How to run it locally
+## Get started
 1. Copy the repository (`develop` branch)
 ```
 git clone https://github.com/Fvaco/goodreads-graphql-wrapper.git
 ```
 2. Install dependencies using `yarn` or `npm install`
-3. Create the `dist` directory with `yarn build` or `npm run build`
+3. Create the `.env` file with your [Goodreads developer API key](https://www.goodreads.com/api/keys). Check the `.env.sample` file to know the format.
+4. Create the `dist` directory with `yarn build` or `npm run build`
     - You can use `yarn dev` or `npm run dev` for _watch_ mode
-4. Run it in local server using
+5. Run it in local server using
 ```
 yarn nodemon dist/server.js
 ```
@@ -24,7 +25,7 @@ or
 ```
 npm run nodemon dist/server.js
 ```
-5. Open you'll be able to see the GraphQL Playgrond on
+6. Open you'll be able to see the GraphQL Playgrond on
 ```
 http://localhost:4000
 ```
