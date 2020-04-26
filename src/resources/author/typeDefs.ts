@@ -26,7 +26,7 @@ export const typeDefs = gql`
         hometown: String
         bornAt: String
         diedAt: String
-        goodreadsAuthor: String
+        goodreadsAuthor: Boolean
         books: [Book]
     }
 `;

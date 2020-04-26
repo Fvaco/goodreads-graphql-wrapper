@@ -1,38 +1,23 @@
-import { GoodreadsDataSource } from '../../lib/data-sources/goodreads';
 import xmlParser from 'xml2json';
-import { camelCase } from 'lodash';
+import { GoodreadsDataSource } from '~/lib/data-sources/goodreads';
+import { mapAuthorInfoData } from './utils/mapAuthorInfoData';
+import { AuthorInfo } from './Author';
+import { RawInfo } from '~/utils/mapRawData';
 
 class DataSource extends GoodreadsDataSource {
     constructor() {
         super();
     }
 
-    async getAuthorInfoById(inputObject: Record<string, any>) {
+    async getAuthorInfoById(inputObject: { authorId: string }): Promise<AuthorInfo | RawInfo> {
         const xmlAuthorInfo = await this.get(`author/show/${inputObject.authorId}?format=xml`);
 
-        const handleObjectField = (objectValue: Record<string, any>) => {
-            if (!!objectValue) {
-                const { type, $t, nil } = objectValue;
-                if (!!nil) return null;
-                if (!!$t) {
-                    if (!!type && type === 'integer') return parseInt($t);
-                    return $t;
-                }
-            }
-            return null;
-        };
-        const handleBooksField = ({ book }: Record<string, any>) => book;
-
-        const rawAuthorInfoJSON = await xmlParser.toJson(xmlAuthorInfo);
+        const rawAuthorInfoJSON = xmlParser.toJson(xmlAuthorInfo);
         const parsedRawAuthorInfoJSON = JSON.parse(rawAuthorInfoJSON);
-        const rawAuthorInfo = parsedRawAuthorInfoJSON.GoodreadsResponse.author;
-        return Object.entries(rawAuthorInfo).reduce((result: Record<string, any>, [key, value]: [string, any]) => {
-            const isBooksField = key === 'books';
-            if (isBooksField) return { ...result, books: handleBooksField(value) };
 
-            const currentValue = typeof value === 'object' && !!value ? handleObjectField(value) : value;
-            return { ...result, [camelCase(key)]: currentValue };
-        }, {});
+        const { author: rawAuthorInfo } = parsedRawAuthorInfoJSON.GoodreadsResponse;
+
+        return mapAuthorInfoData(rawAuthorInfo);
     }
 }
 

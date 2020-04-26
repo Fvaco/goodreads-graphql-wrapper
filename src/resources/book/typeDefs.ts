@@ -7,16 +7,17 @@ export const typeDefs = gql`
     type Book {
         id: ID!
         isbn: String
+        isbn13: String
         title: String
-        num_pages: String
+        numPages: String
         description: String
         published: String
         publisher: String
-        average_rating: String
-        ratings_count: String
-        text_reviews_count: String
-        is_ebook: String
-        language_code: String
+        averageRating: String
+        ratingsCount: String
+        textReviewsCount: String
+        isEbook: String
+        languageCode: String
         similarBooks: [Book]
     }
 `;
