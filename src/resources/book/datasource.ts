@@ -1,23 +1,18 @@
 import { GoodreadsDataSource } from '../../lib/data-sources/goodreads';
 import xmlParser from 'xml2json';
-import _ from 'lodash';
+import { mapBookData } from './utils/mapBookData';
 
 export class DataSource extends GoodreadsDataSource {
     constructor() {
         super();
     }
 
-    async getInfoForBook(inputObject: Record<string, any>) {
+    async getBookById(inputObject: { bookId: string }) {
         const xmlResp = await this.get(`book/show/${inputObject.bookId}?format=xml`);
-
-        const resp = await xmlParser.toJson(xmlResp);
+        const resp = xmlParser.toJson(xmlResp);
         const newJSON = JSON.parse(resp);
-        const theBook = newJSON.GoodreadsResponse.book;
-        const similarBooks = newJSON.GoodreadsResponse.book.similar_books?.book;
-        return {
-            ...theBook,
-            similarBooks,
-        };
+        const { book: rawBook } = newJSON.GoodreadsResponse;
+        return mapBookData(rawBook);
     }
 }
 

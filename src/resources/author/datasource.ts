@@ -9,8 +9,8 @@ export class DataSource extends GoodreadsDataSource {
         super();
     }
 
-    async getAuthorInfoById(inputObject: { authorId: string }): Promise<AuthorInfo | RawInfo> {
-        const xmlAuthorInfo = await this.get(`author/show/${inputObject.authorId}?format=xml`);
+    async getAuthorInfoById({ authorId }: { authorId: string }): Promise<AuthorInfo | RawInfo> {
+        const xmlAuthorInfo = await this.get(`author/show/${authorId}?format=xml`);
 
         const rawAuthorInfoJSON = xmlParser.toJson(xmlAuthorInfo);
         const parsedRawAuthorInfoJSON = JSON.parse(rawAuthorInfoJSON);

@@ -1,11 +1,9 @@
 import { Book } from '../book/Book';
 
 export interface Author {
-    books: [Book];
-    about: string;
-    influences: string;
-    hometown: string;
-    worksCount: string;
+    id: string;
+    name: string;
+    link: string;
 }
 
 export interface AuthorInfo {
