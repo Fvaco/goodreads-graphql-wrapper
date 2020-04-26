@@ -1,17 +1,19 @@
 {
     "compilerOptions": {
-        "target": "es2019",
+        "target": "ES6",
         "module": "commonjs",
-        "lib": ["dom", "es6"],
-
-        "outDir": "dist",
-        "rootDir": "src",
-
+        "moduleResolution": "node",
+        //"sourceMap": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "baseUrl": "./src",
+        "paths": {
+            "~/*": ["./*"]
+        },
         "removeComments": true,
-
         "strict": true,
-
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true
-    }
+    },
+    "exclude": ["node_modules", "**/*.spec.ts"]
 }
