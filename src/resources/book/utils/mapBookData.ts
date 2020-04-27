@@ -1,12 +1,7 @@
-import { RawInfo, mapRawData, MapperFn } from '~/utils/mapRawData';
-import { Book } from '../Book';
 import { AuthorInfo } from '~/resources/author/Author';
 import { mapAuthorInfoData } from '~/resources/author/utils/mapAuthorInfoData';
-
-const authorsMapperFn: MapperFn = ({ author }: { author: RawInfo[] | RawInfo }): AuthorInfo[] | RawInfo => {
-    if (Array.isArray(author)) return author.map((auth) => mapAuthorInfoData(auth));
-    return [mapAuthorInfoData(author)];
-};
+import { mapRawData, RawInfo } from '~/utils/mapRawData';
+import { Book } from '../Book';
 
 export const mapBookData = (rawData: RawInfo): Book | RawInfo => {
     return mapRawData<Book>(rawData, {

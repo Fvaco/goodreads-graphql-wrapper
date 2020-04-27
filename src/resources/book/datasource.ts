@@ -1,6 +1,7 @@
-import { GoodreadsDataSource } from '../../lib/data-sources/goodreads';
 import xmlParser from 'xml2json';
+import { GoodreadsDataSource } from '~/lib/data-sources/goodreads';
 import { mapBookData } from './utils/mapBookData';
+
 
 export class DataSource extends GoodreadsDataSource {
     constructor() {

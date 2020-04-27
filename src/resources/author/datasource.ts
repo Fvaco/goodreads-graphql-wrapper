@@ -1,8 +1,10 @@
 import xmlParser from 'xml2json';
 import { GoodreadsDataSource } from '~/lib/data-sources/goodreads';
-import { mapAuthorInfoData } from './utils/mapAuthorInfoData';
-import { AuthorInfo } from './Author';
 import { RawInfo } from '~/utils/mapRawData';
+import { AuthorInfo } from './Author';
+import { mapAuthorInfoData } from './utils/mapAuthorInfoData';
+
+
 
 export class DataSource extends GoodreadsDataSource {
     constructor() {
