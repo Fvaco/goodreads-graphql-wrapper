@@ -3,7 +3,7 @@ import { gql } from 'apollo-server';
 export const typeDefs = gql`
     extend type Query {
         getAuthorInfoById(id: ID!): AuthorInfo!
-        findAuthorIdByName(name: String): Author
+        findAuthorByName(name: String): Author!
     }
     type Author {
         id: ID!
