@@ -21,7 +21,7 @@ export const typeDefs = gql`
         smallImageUrl: String
         about: String
         influences: String
-        worksCount: String
+        worksCount: Int
         gender: String
         hometown: String
         bornAt: String

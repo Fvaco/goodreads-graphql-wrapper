@@ -1,8 +1,11 @@
+import { mapBookData } from '~/resources/book/utils/mapBookData';
 import { mapRawData, RawInfo } from '~/utils/mapRawData';
-import { Book } from '~/resources/book/Book';
 import { AuthorInfo } from '../Author';
 
-export const mapAuthorInfoData = (rawAuthorInfo: RawInfo): AuthorInfo | RawInfo =>
-    mapRawData<AuthorInfo>(rawAuthorInfo, {
-        books: (value: any) => [...value.book.map((item: { [key: string]: string }) => mapRawData<Book>(item))],
+export const mapAuthorInfoData = (rawAuthorInfo: RawInfo): AuthorInfo | RawInfo => {
+    return mapRawData<AuthorInfo>(rawAuthorInfo, {
+        books: ({ book: authorBooks }: { book: any }) =>
+            Array.isArray(authorBooks) ? authorBooks.map((book) => mapBookData(book)) : [mapBookData(authorBooks)],
+        works_count: (value: string) => +value,
     });
+};

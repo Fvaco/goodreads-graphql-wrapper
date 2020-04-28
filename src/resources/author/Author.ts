@@ -17,7 +17,7 @@ export interface AuthorInfo {
     smallImageUrl: string;
     about: string;
     influences: string;
-    worksCount: string;
+    worksCount: number;
     gender: string;
     hometown: string;
     bornAt: string;
